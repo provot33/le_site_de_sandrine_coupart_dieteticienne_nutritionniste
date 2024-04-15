@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#" ><img src="assets/images/sandrine coupart logo.png" alt="logo du site"></a>
+              <a class="nav-link active" aria-current="page" href="#" ><img src="{{ asset('build/images/sandrine coupart logo.png') }}" alt="logo du site"></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="index.php">Accueil</a>

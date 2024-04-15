@@ -4,9 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		{% block stylesheets %}
-			<link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-			<link rel="stylesheet" href="bootstrap-icons/font/bootstrap-icons.css">
-			<link rel="stylesheet" href="assets/css/style.css" type="text/css">
+            {{ encore_entry_link_tags('app') }}
 			<link rel="preconnect" href="https://fonts.googleapis.com">
 			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 			<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
@@ -30,16 +28,20 @@
 			<h1>SANDRINE, DIÉTÉTICIENNE NUTRITIONNISTE</h1>
 
 			<h2>Qui suis-je?</h2>
-			<P>Diététicienne-nutritionniste diplômée de l’Institut de Commerce et de Gestion de l’Enseignement Supérieur (Paris). 
-																																	      Ma vocation est d’accompagner des personnes motivées à retrouver une relation saine avec la nourriture healthy, afin de leur permettre d’atteindre leur objectif et se sentir mieux dans leur peau. Sportive et passionnée de ce milieu, du bien-être et de l’accompagnement personnel, mon activité se base principalement sur l’éducation nutritionnelle, et l’accompagnement personnel.</p>
-			<p>Atteignez votre objectif de façon saine et durable, juste en rééquilibrant votre alimentation, avec plaisir et sans restriction alimentaire !
+			<p>Diététicienne-nutritionniste diplômée de l’Institut de Commerce et de Gestion de l’Enseignement Supérieur (Paris). 
+			Ma vocation est d’accompagner des personnes motivées à retrouver une relation saine avec la nourriture healthy, 
+            afin de leur permettre d’atteindre leur objectif et se sentir mieux dans leur peau. Sportive et passionnée de ce milieu, 
+            du bien-être et de l’accompagnement personnel, mon activité se base principalement sur l’éducation nutritionnelle, et l’accompagnement personnel.</p>
+			<p>Atteignez votre objectif de façon saine et durable, juste en rééquilibrant votre alimentation, 
+            avec plaisir et sans restriction alimentaire !
 			</p>
 			<p></p>
-			<p>QU’EST-CE QU’UNE CONSULTATION DIÉTÉTIQUE ?																			une activité de collaboration avec les médecins et les autres professionnels de santé.</p>
+			<h3>QU’EST-CE QU’UNE CONSULTATION DIÉTÉTIQUE ?</h3>
+            <p>une activité de collaboration avec les médecins et les autres professionnels de santé.</p>
 		{% endblock %}
 		{% block javascripts %}
-			<script src="bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-			<script src="assets/js/script.js"></script>
+            {{ encore_entry_script_tags('app') }}
+			<script src="{{ asset('build/js/script.js') }}"></script>
 		{% endblock %}
 	</body>
 </html>
