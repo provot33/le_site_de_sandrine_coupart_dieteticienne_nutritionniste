@@ -1,16 +1,45 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		{% block stylesheets %}
+			<link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+			<link rel="stylesheet" href="bootstrap-icons/font/bootstrap-icons.css">
+			<link rel="stylesheet" href="assets/css/style.css" type="text/css">
+			<link rel="preconnect" href="https://fonts.googleapis.com">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+			<link rel="preconnect" href="https://fonts.googleapis.com">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+			<link rel="preconnect" href="https://fonts.googleapis.com">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Hind+Madurai:wght@300;400;500;600;700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+		{% endblock %}
+		<title>
+			{% block title %}Sandrine Coupart Nutritionniste Diététicienne
+			{% endblock %}
+		</title>
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+	</head>
+	<body>
+        {% include 'header.php' %}
+		{% block body %}
 
-        {% block javascripts %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+			<h1>SANDRINE, DIÉTÉTICIENNE NUTRITIONNISTE</h1>
+
+			<h2>Qui suis-je?</h2>
+			<P>Diététicienne-nutritionniste diplômée de l’Institut de Commerce et de Gestion de l’Enseignement Supérieur (Paris). 
+																																	      Ma vocation est d’accompagner des personnes motivées à retrouver une relation saine avec la nourriture healthy, afin de leur permettre d’atteindre leur objectif et se sentir mieux dans leur peau. Sportive et passionnée de ce milieu, du bien-être et de l’accompagnement personnel, mon activité se base principalement sur l’éducation nutritionnelle, et l’accompagnement personnel.</p>
+			<p>Atteignez votre objectif de façon saine et durable, juste en rééquilibrant votre alimentation, avec plaisir et sans restriction alimentaire !
+			</p>
+			<p></p>
+			<p>QU’EST-CE QU’UNE CONSULTATION DIÉTÉTIQUE ?																			une activité de collaboration avec les médecins et les autres professionnels de santé.</p>
+		{% endblock %}
+		{% block javascripts %}
+			<script src="bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+			<script src="assets/js/script.js"></script>
+		{% endblock %}
+	</body>
 </html>
