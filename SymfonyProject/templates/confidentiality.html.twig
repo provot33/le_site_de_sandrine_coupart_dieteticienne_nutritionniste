@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		{% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+			<link rel="preconnect" href="https://fonts.googleapis.com">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+			<link rel="preconnect" href="https://fonts.googleapis.com">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+			<link rel="preconnect" href="https://fonts.googleapis.com">
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+			<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Hind+Madurai:wght@300;400;500;600;700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+		{% endblock %}
+		<title>
+			{% block title %}Sandrine Coupart Nutritionniste Diététicienne
+			{% endblock %}
+		</title>
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+	</head>
+	<body>
+        {% include 'header.php' %}
+		{% block body %}
+
+			<h1>{{ title }} POLITIQUE DE CONFIDENTIALITE</h1>
+
+			<h2>Données récupérées</h2>
+			<p>Ce site ne récupère que des avis d'utilisateurs. Les utilisateurs identifiés peuvent proposer des avis sur leurs recettes.</p>
+
+			<h3>Données utilisateurs</h3>
+			<p>Les données utilisateurs qui sont utilisés dans ce site sont des données fournies par les clients de Mme Coupart, nutritionniste.
+			Ces données ont été fournies par les clients en connaissance de cause lors d'un entretien physique avec Mme Coupart.</p> 
+			
+			<h2>Exploitation des données</h2>
+			<p>Les données fournies permettent à Mme Coupart de proposer à ses clients des recettes personnalisées et adaptées.
+			Mme Coupart a totalement conscience du caractère confidentiel de ces données et s'interdit toute exploitation commerciale ou toute diffusion.
+			Les données récupérées, afin d'identifier l'auteur d'un avis sur une recette, seront anonymisées si l'avis doit être diffusé.
+
+			<h2>Responsable sécurité</h2>
+			<p>La personne responsable de la sécurité et de la gestion des données est
+			Mme Sandrine Coupart
+			57 Rue des Plantes en Pots
+			50356 Trifouillis-les-Alouettes</p>
+
+			<h2>En cas de question</h2>
+			<p>Vous pouvez contacter Mme Coupart ou la CNIL</p>
+			
+		{% endblock %}
+		{% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+			<script src="{{ asset('build/js/script.js') }}"></script>
+		{% endblock %}
+	</body>
+</html>

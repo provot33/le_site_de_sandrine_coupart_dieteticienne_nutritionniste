@@ -1,3 +1,8 @@
 body {
-    background-color: lightgray;
+    background-color: rgb(200, 245, 200);
+}
+
+.logo_site {
+    max-width: 100px;
+    max-height: 100px;
 }
