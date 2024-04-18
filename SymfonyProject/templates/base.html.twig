@@ -25,19 +25,13 @@
         {% include 'header.php' %}
 		{% block body %}
 
-			<h1>SANDRINE, DIÉTÉTICIENNE NUTRITIONNISTE</h1>
+			<h1>{{ title }}</h1>
 
-			<h2>Qui suis-je?</h2>
-			<p>Diététicienne-nutritionniste diplômée de l’Institut de Commerce et de Gestion de l’Enseignement Supérieur (Paris). 
-			Ma vocation est d’accompagner des personnes motivées à retrouver une relation saine avec la nourriture healthy, 
-            afin de leur permettre d’atteindre leur objectif et se sentir mieux dans leur peau. Sportive et passionnée de ce milieu, 
-            du bien-être et de l’accompagnement personnel, mon activité se base principalement sur l’éducation nutritionnelle, et l’accompagnement personnel.</p>
-			<p>Atteignez votre objectif de façon saine et durable, juste en rééquilibrant votre alimentation, 
-            avec plaisir et sans restriction alimentaire !
-			</p>
-			<p></p>
-			<h3>QU’EST-CE QU’UNE CONSULTATION DIÉTÉTIQUE ?</h3>
-            <p>une activité de collaboration avec les médecins et les autres professionnels de santé.</p>
+			{% for webContent in webContents %}
+				<h2>{{ webContent.title|e }}</h2>
+				<p>{{ webContent.content }}</p>
+			{% endfor %}
+
 		{% endblock %}
 		{% block javascripts %}
             {{ encore_entry_script_tags('app') }}

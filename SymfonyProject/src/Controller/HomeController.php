@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller;
 
+use App\Repository\PageRepository;
+use App\Repository\WebContentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -8,24 +10,33 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     #[Route('/')]
-    public function home(): Response
-    {
-        return $this->render('base.html.twig', []);
+    public function home(PageRepository $pageRepository,
+        WebContentRepository $webContentRepository): Response {
+
+        $page = $pageRepository->findOneByName("accueil");
+        $webContents = $webContentRepository->findByPageName("accueil");
+
+        return $this->render('base.html.twig', [
+            'title' => $page->getTitle(),
+            'webContents' => $webContents,
+        ]);
     }
 
     #[Route('/contact')]
     public function contact(): Response
     {
         return $this->render('confidentiality.html.twig', [
-          'title' => "contact",
+            'title' => "contact",
         ]);
     }
 
     #[Route('/politique_confidentialite')]
-    public function confidentiality(): Response
+    public function confidentiality(WebContentRepository $webcontentrepository): Response
     {
+        $webcontent = $webcontentrepository->find(1, null, null);
         return $this->render('confidentiality.html.twig', [
-          'title' => "Confidentialité",
+            'title' => $webcontent->getTitle(),
+            'content' => $webcontent->getContent(),
         ]);
     }
 
@@ -33,7 +44,7 @@ class HomeController extends AbstractController
     public function legality(): Response
     {
         return $this->render('confidentiality.html.twig', [
-          'title' => "Légalité",
+            'title' => "Légalité",
         ]);
     }
 }

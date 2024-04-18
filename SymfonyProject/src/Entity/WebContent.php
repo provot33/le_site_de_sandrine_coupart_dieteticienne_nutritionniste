@@ -20,6 +20,9 @@ class WebContent
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
+    #[ORM\OneToOne(mappedBy: 'webContent', cascade: ['persist', 'remove'])]
+    private ?PageOrganisation $pageOrganisation = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +48,23 @@ class WebContent
     public function setContent(string $content): static
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getPageOrganisation(): ?PageOrganisation
+    {
+        return $this->pageOrganisation;
+    }
+
+    public function setPageOrganisation(PageOrganisation $pageOrganisation): static
+    {
+        // set the owning side of the relation if necessary
+        if ($pageOrganisation->getWebContent() !== $this) {
+            $pageOrganisation->setWebContent($this);
+        }
+
+        $this->pageOrganisation = $pageOrganisation;
 
         return $this;
     }

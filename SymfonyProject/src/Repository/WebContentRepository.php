@@ -21,6 +21,22 @@ class WebContentRepository extends ServiceEntityRepository
         parent::__construct($registry, WebContent::class);
     }
 
+   /**
+     * @return WebContent[] Returns an array of WebContent objects
+     */
+    public function findByPageName($value): array
+    {
+        return $this->createQueryBuilder('w')
+            ->join('w.pageOrganisation', 'po')
+            ->join('po.page', 'p')
+            ->andWhere('p.name = :val')
+            ->setParameter('val', $value)
+            ->orderBy('po.placeInPage', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     //    /**
     //     * @return WebContent[] Returns an array of WebContent objects
     //     */
