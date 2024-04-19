@@ -10,7 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     #[Route('/')]
-    public function home(PageRepository $pageRepository,
+    public function home(
+        PageRepository $pageRepository,
         WebContentRepository $webContentRepository): Response {
 
         $page = $pageRepository->findOneByName("accueil");
@@ -31,20 +32,29 @@ class HomeController extends AbstractController
     }
 
     #[Route('/politique_confidentialite')]
-    public function confidentiality(WebContentRepository $webcontentrepository): Response
+    public function confidentiality(
+        PageRepository $pageRepository,
+        WebContentRepository $webContentRepository): Response
     {
-        $webcontent = $webcontentrepository->find(1, null, null);
-        return $this->render('confidentiality.html.twig', [
-            'title' => $webcontent->getTitle(),
-            'content' => $webcontent->getContent(),
+        $page = $pageRepository->findOneByName("politique_confidentialite");
+        $webContents = $webContentRepository->findByPageName("politique_confidentialite");
+
+        return $this->render('base.html.twig', [
+            'title' => $page->getTitle(),
+            'webContents' => $webContents,
         ]);
     }
 
     #[Route('/mentions_legales')]
-    public function legality(): Response
+    public function legality(PageRepository $pageRepository,
+        WebContentRepository $webContentRepository): Response
     {
-        return $this->render('confidentiality.html.twig', [
-            'title' => "Légalité",
+        $page = $pageRepository->findOneByName("mentions_legales");
+        $webContents = $webContentRepository->findByPageName("mentions_legales");
+
+        return $this->render('base.html.twig', [
+            'title' => $page->getTitle(),
+            'webContents' => $webContents,
         ]);
     }
 }
