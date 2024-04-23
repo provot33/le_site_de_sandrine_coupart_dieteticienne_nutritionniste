@@ -32,14 +32,16 @@
             </li>   -->
           </ul>
         </div>
-        <li class="nav-item ml-auto mr-1" style="display:block" id="lien-connexion">
-          <a class="nav-link" href="/login">Connexion</a>
-        </li>
-                    <!-- <li class="nav-item w-80" style="display:none" id="lien-deconnexion">
-              <a class="nav-link" href="/logout">Déconnexion</a>
-            </li>   -->
+{% if session.user is defined %}
+    <li class="nav-item w-80" style="display:block" id="lien-deconnexion"><a class="nav-link" href="/logout">Déconnexion</a></li>
+{% else %}
+    <li class="nav-item ml-auto mr-1" style="display:block" id="lien-connexion"><a class="nav-link" href="/login">Connexion</a></li>
+{% endif %}
       </div>
     </nav>
   </nav>
+{% if session.user is defined %}
+    <div>Bonjour {{session.user.first_name }} {{ session.user.last_name }}</div>
+{% endif %}
   <!----fin navbar------>
 </header>

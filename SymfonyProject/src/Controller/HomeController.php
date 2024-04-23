@@ -9,18 +9,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    #[Route('/')]
+    #[Route('/', name: 'home')]
     public function home(
         PageRepository $pageRepository,
         WebContentRepository $webContentRepository): Response {
 
-        $page = $pageRepository->findOneByName("accueil");
-        $webContents = $webContentRepository->findByPageName("accueil");
-
-        return $this->render('base.html.twig', [
-            'title' => $page->getTitle(),
-            'webContents' => $webContents,
-        ]);
+        return $this->loadPage("accueil", $pageRepository, $webContentRepository);
     }
 
     #[Route('/contact')]
@@ -34,27 +28,32 @@ class HomeController extends AbstractController
     #[Route('/politique_confidentialite')]
     public function confidentiality(
         PageRepository $pageRepository,
-        WebContentRepository $webContentRepository): Response
-    {
-        $page = $pageRepository->findOneByName("politique_confidentialite");
-        $webContents = $webContentRepository->findByPageName("politique_confidentialite");
+        WebContentRepository $webContentRepository): Response {
 
-        return $this->render('base.html.twig', [
-            'title' => $page->getTitle(),
-            'webContents' => $webContents,
-        ]);
+        return $this->loadPage("politique_confidentialite", $pageRepository, $webContentRepository);
     }
 
     #[Route('/mentions_legales')]
     public function legality(PageRepository $pageRepository,
-        WebContentRepository $webContentRepository): Response
-    {
-        $page = $pageRepository->findOneByName("mentions_legales");
-        $webContents = $webContentRepository->findByPageName("mentions_legales");
+        WebContentRepository $webContentRepository): Response {
 
-        return $this->render('base.html.twig', [
+        return $this->loadPage("mentions_legales", $pageRepository, $webContentRepository);
+    }
+
+    private function loadPage($nomPage,
+        PageRepository $pageRepository,
+        WebContentRepository $webContentRepository): Response {
+        $page = $pageRepository->findOneByName($nomPage);
+        $webContents = $webContentRepository->findByPageName($nomPage);
+        $session = [];
+        foreach ($_SESSION as $key => $item) {
+            $session[$key] = $item;
+        }
+
+        return $this->render('page.html.twig', [
             'title' => $page->getTitle(),
             'webContents' => $webContents,
+            'session' => $session,
         ]);
     }
 }

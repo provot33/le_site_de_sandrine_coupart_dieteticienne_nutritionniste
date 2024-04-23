@@ -116,3 +116,19 @@ VALUES
 (2, 5, 2, 14),
 (2, 5, 2, 15)
 ;
+
+-- Insertion des Administrateurs du site :
+INSERT INTO site_sandrine_coupart_nutritionniste.administrator
+(name, firstname, email, password)
+VALUES
+('Coupart', 'Sandrine', 'scoupart@orange.fr', PASSWORD('scoupart'));
+
+-- Insertion des Patients connus qui peuvent s'authentifier
+INSERT INTO site_sandrine_coupart_nutritionniste.patient
+(name, firstname, email, password)
+VALUES
+('Bhon', 'Jean', 'jeanbhon@free.fr', PASSWORD('jeanbhon')),
+('Tatouille', 'Sarah', 'statouille@sfr.fr', PASSWORD('statouille')),
+('Atadonf', 'Patrick', 'pat.atadonf@orange.fr', PASSWORD('pat.atadonf')),
+('Legras', 'Jaime', 'jaime.legras@free.fr', PASSWORD('jaime.legras')),
+('Sancel', 'Regine', 'regine.sancel@bouygues.fr', PASSWORD('regine.sancel'));

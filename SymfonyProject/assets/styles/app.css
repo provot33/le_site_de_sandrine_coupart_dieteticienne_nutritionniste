@@ -1,13 +1,24 @@
 body {
-    background-color: rgb(200, 245, 200);
+  background-color: rgb(200, 245, 200);
 }
 
 .logo_site {
-    max-width: 100px;
-    max-height: 100px;
+  max-width: 100px;
+  max-height: 100px;
 }
 
 .connexion-item,
 .deconnexion-item {
-    align-items: end;
+  align-items: end;
+}
+
+.ml-3 {
+    margin-left: 1rem !important;
+}
+
+.center {
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    text-align: center;
 }

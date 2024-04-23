@@ -1,34 +1,63 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		{% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-			<link rel="preconnect" href="https://fonts.googleapis.com">
-			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-			<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
-			<link rel="preconnect" href="https://fonts.googleapis.com">
-			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-			<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-			<link rel="preconnect" href="https://fonts.googleapis.com">
-			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-			<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Hind+Madurai:wght@300;400;500;600;700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-		{% endblock %}
-		<title>
-			{% block title %}Sandrine Coupart Nutritionniste Diététicienne
-			{% endblock %}
-		</title>
-		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-	</head>
-	<body>
-        {% include 'header.php' %}
-		{% block body %}
-			<h1>{{ user }}</h1>
-		{% endblock %}
-		{% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-			<script src="{{ asset('build/js/script.js') }}"></script>
-		{% endblock %}
-	</body>
-</html>
+{% extends 'base.html.twig' %}
+
+{% block body_id 'login' %}
+
+{% block body %}
+	<form method="post" class="mt-5">
+		<fieldset>
+			<legend>Connectez vous</legend>
+			{% if app.debug %}
+				<p>Username:
+					{{ app.user.username ?? 'Anonymous user' }}</p>
+				<p>Request method:
+					{{ app.request.method }}</p>
+				<p>Application Environment:
+					{{ app.environment }}</p>
+				<p>
+					Messages debug :
+					{% for debug in debugs %}
+						{{ debug }}<br/>
+					{% endfor %}
+				</p>
+			{% endif %}
+
+			{% for erreur in erreurs %}
+				<h1>{{ erreur }}</h1>
+			{% endfor %}
+
+			{% if app.user %}
+				<div class="row center">
+					<div class="col-12 mt-3">
+						Bonjour
+						{{ app.user.username }}
+					</div>
+					<div class="col-12 mt-3 mb-3">
+						<a class="btn btn-sm btn-danger" href="{{ path('app_logout') }}">Déconnexion</a>
+					</div>
+				</div>
+			{% else %}
+				<div class="row center">
+					<div class="col-12 mt-3">
+						<p>
+							Connexion :
+						</p>
+					</div>
+					<div class="col-12 mt-3 mb-3">
+						<input type="text" value="{{ last_username }}" name="username" id="inputUsername" required autofocus placeholder="adresse courriel">
+					</div>
+					<div class="col-12 mt-3 mb-3">
+						<input type="password" name="password" id="inputPassword" required placeholder="mot de passe">
+					</div>
+					<div class="col-12 mt-3 mb-3">
+						<button class="center btn btn-success" type="submit">
+							Connexion
+						</button>
+					</div>
+				</div>
+
+			{% endif %}
+
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+		</fieldset>
+	</form>
+{% endblock %}

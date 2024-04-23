@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Administrator;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,6 +20,27 @@ class AdministratorRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Administrator::class);
+    }
+
+    public function validateUserPassword($id, $password) : ?bool
+    {
+        $rsm = new ResultSetMapping();
+        $rsm->addScalarResult('id', 'id');
+        $rsm->addScalarResult('name', 'name');
+        $query = $this->getEntityManager()->createNativeQuery(
+            'SELECT a.id, a.name FROM administrator a
+            WHERE a.id = :id
+            AND a.password = PASSWORD(:password)',
+            $rsm
+        );
+        $query->setParameters([
+            ":id" => $id,
+            ":password" => $password,
+        ]);
+        
+        $results = $query->getArrayResult();
+
+        return count($results) == 1;
     }
 
     //    /**

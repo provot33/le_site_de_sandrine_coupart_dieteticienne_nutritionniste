@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Patient;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,6 +20,28 @@ class PatientRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Patient::class);
+    }
+
+    public function validateUserPassword($id, $password) : ?bool
+    {
+        $rsm = new ResultSetMapping();
+        $rsm->addScalarResult('id', 'id');
+        $rsm->addScalarResult('name', 'name');
+        $query = $this->getEntityManager()->createNativeQuery(
+            'SELECT p.id, p.name FROM patient p
+            WHERE p.id = :id
+            AND p.password = PASSWORD(:password)',
+            $rsm
+        );
+        $query->setParameters([
+            ":id" => $id,
+            ":password" => $password,
+        ]);
+        
+        $results = $query->getArrayResult();
+
+        return count($results) == 1;
+        //return isset($results['id']);
     }
 
     //    /**
