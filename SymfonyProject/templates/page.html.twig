@@ -2,16 +2,28 @@
 
 {% block body %}
 
-{# {% for key, value in session %}
-    {{ key }}
-{% endfor %}
-<br />
-{% for key, value in session.user %}
-    {{ key }} 
-{% endfor %}
-<br /> #}
+	{# {% for key, value in session %}
+			    {{ key }}
+			{% endfor %}
+			<br />
+			{% for key, value in session.user %}
+			    {{ key }} 
+			{% endfor %}
+			<br /> #}
 
-	<h1>{{ title }}</h1>
+
+	{% if session.user is defined and session.user.admin %}
+		<form method="post">
+			<textarea class="editor" name="page_{{ page.id }}" id="page_{{ page.id }}">{{ page.title }}</textarea>
+			<div>
+				<button class="center btn btn-success" type="submit">
+					Mettre à jour
+				</button>
+			</div>
+		</form>
+	{% else %}
+		{{ page.title|raw }}
+	{% endif %}
 
 	{% for webContent in webContents %}
 		{% if webContent.pageOrganisation.level == 1 %}
@@ -19,9 +31,21 @@
 		{% elseif webContent.pageOrganisation.level == 2 %}
 			<h3>{{ webContent.title|e }}</h3>
 		{% else %}
-			<p>{{ webContent.title|e }}</p>
+			{{ webContent.title|e }}
 		{% endif %}
-		<p>{{ webContent.content }}</p>
+		{% if session.user is defined and session.user.admin %}
+			<form method="post">
+				<textarea class="editor" name="content_{{ webContent.id }}" id="content_{{ webContent.id }}">{{ webContent.content }}</textarea>
+				<div>
+					<button class="center btn btn-success" type="submit">
+						Mettre à jour
+					</button>
+				</div>
+			</form>
+		{% else %}
+			{{ webContent.content|raw }}
+		{% endif %}
+
 	{% endfor %}
 
 {% endblock %}

@@ -21,15 +21,15 @@ class PageRepository extends ServiceEntityRepository
         parent::__construct($registry, Page::class);
     }
 
-       public function findOneByName($name): ?Page
-       {
-           return $this->createQueryBuilder('p')
-               ->andWhere('p.name = :name')
-               ->setParameter('name', $name)
-               ->getQuery()
-               ->getOneOrNullResult()
-           ;
-       }
+    public function findOneByName($name): ?Page
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.name = :name')
+            ->setParameter('name', $name)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 
     //    /**
     //     * @return Page[] Returns an array of Page objects

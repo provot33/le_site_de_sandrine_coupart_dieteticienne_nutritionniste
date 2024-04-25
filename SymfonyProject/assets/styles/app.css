@@ -1,5 +1,13 @@
 body {
-  background-color: rgb(200, 245, 200);
+  background-color: #c8f5c8;
+}
+
+.look_navbar {
+    font-size: larger;
+    text-align: center;
+    margin-bottom: -30px;
+    z-index: 2000;
+    position: relative;
 }
 
 .logo_site {
@@ -21,4 +29,8 @@ body {
     align-self: center;
     align-content: center;
     text-align: center;
+}
+
+.mce-content-body {
+    background: #c8f5c8;
 }

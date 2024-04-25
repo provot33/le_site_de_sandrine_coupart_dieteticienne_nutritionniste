@@ -1,5 +1,8 @@
 <header>
   <!----début navbar------>
+  {% if session.user is defined %}
+            <div class="look_navbar">Bonjour {{session.user.first_name }} {{ session.user.last_name }}</div>
+  {% endif %}
   <nav>
     <nav class="navbar navbar-inverse navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
@@ -24,12 +27,6 @@
             <li class="nav-item">
               <a class="nav-link" href="/politique_confidentialite">Politique de confidentialité</a>
             </li>
-            <!-- <li class="nav-item ml-auto mr-1" style="display:block" id="lien-connexion">
-              <a class="nav-link" href="/login">Connexion</a>
-            </li> -->
-            <!-- <li class="nav-item w-80" style="display:none" id="lien-deconnexion">
-              <a class="nav-link" href="/logout">Déconnexion</a>
-            </li>   -->
           </ul>
         </div>
 {% if session.user is defined %}
@@ -40,8 +37,5 @@
       </div>
     </nav>
   </nav>
-{% if session.user is defined %}
-    <div>Bonjour {{session.user.first_name }} {{ session.user.last_name }}</div>
-{% endif %}
   <!----fin navbar------>
 </header>

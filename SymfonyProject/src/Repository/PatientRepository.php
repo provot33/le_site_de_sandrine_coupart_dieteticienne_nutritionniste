@@ -41,7 +41,6 @@ class PatientRepository extends ServiceEntityRepository
         $results = $query->getArrayResult();
 
         return count($results) == 1;
-        //return isset($results['id']);
     }
 
     //    /**
